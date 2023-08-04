@@ -25,5 +25,5 @@ def load_image(image_path):
 # 이미지 띄우기 함수
 def show_image(image_path, screen):
     image = load_image(image_path)
-    image_rect = image.get_rect(center=(screen_width // 2, screen_height // 2))
+    image_rect = image.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
     screen.blit(image, image_rect)
