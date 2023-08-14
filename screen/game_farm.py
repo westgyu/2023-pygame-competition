@@ -4,12 +4,12 @@ import sys
 from env import * # 설정값 저장 파일: env.py
 import func as utils # 함수 파일: func.py
 
-# 메인 게임화면(판매/배달) - screen_flag = 2
-def start(screen):
+# 농장 - screen_flag = 3
+def farm(screen):
     utils.show_image("img/game_desc/flower-g1457003f2_1920.jpg", screen)
 
     # 타이틀 출력
-    utils.show_text("Game START", TITLE_FONT, BLACK, screen, SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+    utils.show_text("FARM", TITLE_FONT, BLACK, screen, SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
     pygame.display.update()
 

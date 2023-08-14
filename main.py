@@ -2,11 +2,15 @@
 import pygame
 import sys
 from env import * # 설정값 저장 파일: env.py
-from func import * # 게임 기능 함수 파일: func.py
-from screen.game_start import * # 게임 실행 파일: screen\game_start.py
+import func as utils  # 게임 기능 함수 파일: func.py
+import screen.game_start as gs # 게임 실행 파일: screen\game_start.py
+import screen.game_farm as gf # 게임 실행 파일: screen\game_farm.py
+import screen.game_market as gmarket # 게임 실행 파일: screen\game_market.py
+import screen.game_casino as gc # 게임 실행 파일: screen\game_casino.py
+import screen.game_menu as gmenu # 게임 실행 파일: screen\game_menu.py
 
 ###### 초기화 ######
-init() # Pygame 초기화
+utils.init() # Pygame 초기화
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # 화면 크기 설정
 
 ###### 게임 화면 ######
@@ -17,8 +21,8 @@ while True:
         screen.fill(WHITE)  # 흰색 배경화면
         
         # 출력
-        show_text("2023 Pygame Competition", TITLE_FONT, BLACK, screen, SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2) # 타이틀 출력
-        show_text("[ 게임 시작 ]", BODY_FONT, BLACK, screen, SCREEN_WIDTH // 2 , START_Y) # 게임 시작 출력
+        utils.show_text("2023 Pygame Competition", TITLE_FONT, BLACK, screen, SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2) # 타이틀 출력
+        utils.show_text("[ 게임 시작 ]", BODY_FONT, BLACK, screen, SCREEN_WIDTH // 2 , START_Y) # 게임 시작 출력
 
         pygame.display.update() # 화면 업데이트
     
@@ -34,12 +38,12 @@ while True:
                         screen_flag = 2 # 게임 시작 화면으로 이동
 
     elif screen_flag == 2: # 메인 게임화면(판매/배달)
-        game_start(screen) # 게임 시작 함수 호출
+        gs.start(screen) # 게임 시작 함수 호출
     elif screen_flag == 3: # 농장 화면
-        pass
+        gf.farm(screen) # 농장 화면 함수 호출
     elif screen_flag == 4: # 상점 화면
-        pass
+        gmarket.market(screen) # 상점 화면 함수 호출
     elif screen_flag == 5: # 도박장 화면
-        pass
+        gc.casino(screen) # 도박장 화면 함수 호출
     elif screen_flag == 6: # 메뉴 화면
-        pass
+        gmenu.menu(screen) # 메뉴 화면 함수 호출
