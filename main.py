@@ -9,9 +9,6 @@ from screen.game_start import * # 게임 실행 파일: screen\game_start.py
 init() # Pygame 초기화
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # 화면 크기 설정
 
-# 플래그 설정
-screen_flag = 1 # 1: 메인 화면, 2: 게임 설명 화면, 3: 게임 시작 화면
-
 ###### 게임 화면 ######
 while True:
     # 마우스 위치 설정
@@ -33,10 +30,16 @@ while True:
             
             elif event.type == pygame.MOUSEBUTTONDOWN: # 마우스 눌렀을 때
                 if event.button == 1: # 마우스 왼쪽 버튼 눌렀을 때
-                    if mouse_x >= 560 and mouse_x <= 720 and mouse_y >= 520 and mouse_y <= 550: # 마우스가 게임 시작 위치에 있을 때
+                    if mouse_x >= MAIN_BUTTON_START[0] and mouse_x <= MAIN_BUTTON_END[0] and mouse_y >= MAIN_BUTTON_START[1] and mouse_y <= MAIN_BUTTON_END[1]: # 마우스가 게임 시작 위치에 있을 때
                         screen_flag = 2 # 게임 시작 화면으로 이동
-                    else:
-                        screen_flag = 1 # 메인 화면으로 이동
 
-    elif screen_flag == 2: # 게임 시작을 눌렀을 때
+    elif screen_flag == 2: # 메인 게임화면(판매/배달)
         game_start(screen) # 게임 시작 함수 호출
+    elif screen_flag == 3: # 농장 화면
+        pass
+    elif screen_flag == 4: # 상점 화면
+        pass
+    elif screen_flag == 5: # 도박장 화면
+        pass
+    elif screen_flag == 6: # 메뉴 화면
+        pass
