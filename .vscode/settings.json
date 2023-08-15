@@ -3,6 +3,8 @@
         "blit",
         "gmarket",
         "gmenu",
+        "HOGAMDO",
+        "KEYDOWN",
         "MOUSEBUTTONDOWN",
         "Ohsquare",
         "pygame",

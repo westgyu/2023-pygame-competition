@@ -11,11 +11,6 @@ BLACK = (0, 0, 0)
 # 커서 위치
 START_Y = SCREEN_HEIGHT // 2 + 180
 
-# 폰트
-pygame.font.init()
-TITLE_FONT = pygame.font.Font("./font/Cafe24Ohsquare-v2.0/Cafe24Ohsquare-v2.0.otf", 50)
-BODY_FONT = pygame.font.Font("./font/S-Core_Dream_OTF/SCDream2.otf", 30)
-
 ##############################################
 
 # 앞으로 모든 위치는 [x, y] 형태로 표현
@@ -33,5 +28,12 @@ MENU_BUTTON = [70, SCREEN_HEIGHT-70, 50] # [x, y, r]
 # 파일 위치
 loc_screen_flag = "data/screen.flag"
 loc_menu_distance = "data/menu.distance"
+loc_money = 'data/money'
+loc_hogamdo = "data/hogamdo"
+
+# 폰트
+pygame.font.init()
+TITLE_FONT = pygame.font.Font("./font/Cafe24Ohsquare-v2.0/Cafe24Ohsquare-v2.0.otf", 50)
+BODY_FONT = pygame.font.Font("./font/S-Core_Dream_OTF/SCDream2.otf", 30)
 
 ##############################################

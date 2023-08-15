@@ -47,7 +47,7 @@ def varfile(mode, loc, data):
         return res
 
 # 화면 바꾸는 함수
-def switch_screen(screen, flag):
+def switch_screen(screen, flag, money, hogamdo):
     if flag == 2: # 메인 게임화면(판매/배달)
         gs.start(screen) # 게임 시작 함수 호출
     elif flag == 3: # 농장 화면
@@ -55,7 +55,7 @@ def switch_screen(screen, flag):
     elif flag == 4: # 상점 화면
         gmarket.market(screen) # 상점 화면 함수 호출
     elif flag == 5: # 도박장 화면
-        gc.casino(screen) # 도박장 화면 함수 호출
+        gc.casino(screen, money, hogamdo) # 도박장 화면 함수 호출
     elif flag == 6: # 메뉴 화면
         gmenu.menu(screen) # 메뉴 화면 함수 호출
 
