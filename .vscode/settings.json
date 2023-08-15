@@ -5,6 +5,8 @@
         "gmenu",
         "MOUSEBUTTONDOWN",
         "Ohsquare",
-        "pygame"
+        "pygame",
+        "sflag",
+        "varfile"
     ]
 }
