@@ -21,7 +21,11 @@ MAIN_BUTTON_START = [560, 520]
 MAIN_BUTTON_END = [720, 550]
 
 # 메뉴 이동 버튼
-MENU_BUTTON = [70, SCREEN_HEIGHT-70, 50] # [x, y, r]
+MENU_BUTTON = [40, SCREEN_HEIGHT-40, 30] # [x, y, r]
+EXIT_BUTTON = [1240, SCREEN_HEIGHT-680, 30]
+LEFT_BUTTON = [40, (SCREEN_HEIGHT//2)+15, 30]
+RIGHT_BUTTON = [1240, (SCREEN_HEIGHT//2)+15, 30]
+
 
 ##############################################
 
