@@ -23,7 +23,7 @@ def start(screen):
     if menu_distance != '': # menu_distance에 값이 있다면
         menu_distance = float(menu_distance) # float로 형변환
     
-    menu_check = threading.Thread(target=utils.default_ui, args=(screen, mouse_pos, menu_check_stop_event)) # UI 쓰레드
+    menu_check = threading.Thread(target=utils.default_ui_menu, args=(screen, mouse_pos, menu_check_stop_event)) # UI 쓰레드
     if thr_flag == 0: # 한 번도 실행이 안 됐다면
         thr_flag = 1
         menu_check_stop_event.clear() # 이벤트 초기화
@@ -39,7 +39,7 @@ def start(screen):
         elif event.type == pygame.MOUSEBUTTONDOWN: # 마우스 눌렀을 때
                 if event.button == 1: # 마우스 왼쪽 버튼 눌렀을 때
                     if isinstance(menu_distance, float) and menu_distance <= MENU_BUTTON[2]: # 마우스가 원 위에 있을 때
-                        utils.varfile("w", loc_screen_flag, 6) # 메뉴 화면으로 이동
+                        utils.varfile("w", loc_screen_flag, 3) #농장 화면으로 이동
                         menu_check_stop_event.set()
                         thr_flag = 0
     

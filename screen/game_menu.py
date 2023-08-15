@@ -23,7 +23,7 @@ def menu(screen):
     if menu_distance != '': # menu_distance에 값이 있다면
         menu_distance = float(menu_distance) # float로 형변환
 
-    menu_check = threading.Thread(target=utils.default_ui, args=(screen, mouse_pos, menu_check_stop_event)) # UI 쓰레드
+    menu_check = threading.Thread(target=utils.default_ui_exit, args=(screen, mouse_pos, menu_check_stop_event)) # UI 쓰레드
     if thr_flag == 0: # 한 번도 실행이 안 됐다면
         thr_flag = 1
         menu_check_stop_event.clear() # 이벤트 초기화
