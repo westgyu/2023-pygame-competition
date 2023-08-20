@@ -20,10 +20,17 @@ def farm(screen):
 
     screen_flag = int(utils.varfile("r", loc_screen_flag, 0)) # screen_flag 변수 업데이트
     menu_distance = utils.varfile("r", loc_menu_distance, 0) # menu_distance(마우스가 원 위에 있는지 탐지) 변수 업데이트
+    arrow_l_distance = utils.varfile("r", loc_arrow_l, 0) # arrow_l_distance 변수 업데이트
+    arrow_r_distance = utils.varfile("r", loc_arrow_r, 0) # arrow_r_distance 변수 업데이트
+
     if menu_distance != '': # menu_distance에 값이 있다면
         menu_distance = float(menu_distance) # float로 형변환
+    if arrow_l_distance != '': # menu_distance에 값이 있다면
+        arrow_l_distance = float(arrow_l_distance) # float로 형변환
+    if arrow_r_distance != '': # menu_distance에 값이 있다면
+        arrow_r_distance = float(arrow_r_distance) # float로 형변환
 
-    menu_check = threading.Thread(target=utils.default_ui_exit, args=(screen, mouse_pos, menu_check_stop_event)) # UI 쓰레드
+    menu_check = threading.Thread(target=utils.default_ui, args=(screen, mouse_pos, menu_check_stop_event, 1)) # UI 쓰레드
     if thr_flag == 0: # 한 번도 실행이 안 됐다면
         thr_flag = 1
         menu_check_stop_event.clear() # 이벤트 초기화
@@ -38,10 +45,18 @@ def farm(screen):
             pygame.quit()
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN: # 마우스 눌렀을 때
-                if event.button == 1: # 마우스 왼쪽 버튼 눌렀을 때
-                    if isinstance(menu_distance, float) and menu_distance <= MENU_BUTTON[2]: # 마우스가 원 위에 있을 때
-                        utils.varfile("w", loc_screen_flag, 2) # 메인 게임화면(판매/배달) 으로 이동
-                        menu_check_stop_event.set()
-                        thr_flag = 0
+            if event.button == 1: # 마우스 왼쪽 버튼 눌렀을 때
+                if isinstance(menu_distance, float) and menu_distance <= MENU_BUTTON[2]: # 마우스가 원 위에 있을 때
+                    utils.varfile("w", loc_screen_flag, 2) # 메인 게임화면(판매/배달) 으로 이동
+                    menu_check_stop_event.set()
+                    thr_flag = 0
+                if isinstance(arrow_l_distance, float) and arrow_l_distance <= MENU_BUTTON[2]: # 마우스가 원 위에 있을 때
+                    utils.varfile("w", loc_screen_flag, 4) # 상점으로 이동
+                    menu_check_stop_event.set()
+                    thr_flag = 0
+                if isinstance(arrow_r_distance, float) and arrow_r_distance <= MENU_BUTTON[2]: # 마우스가 원 위에 있을 때
+                    utils.varfile("w", loc_screen_flag, 5) # 도박장으로 이동
+                    menu_check_stop_event.set()
+                    thr_flag = 0
 
-    return screen_flag # screen_flag 반환 -> main.py에서 변수 값 업데이트 -> 업데이트 된 값에 따라 화면 바뀜
+    return screen_flag

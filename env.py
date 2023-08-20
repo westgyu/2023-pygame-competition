@@ -7,6 +7,7 @@ SCREEN_HEIGHT = 720
 # 색상 설정
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+RED = (255, 0, 0)
 
 # 커서 위치
 START_Y = SCREEN_HEIGHT // 2 + 180
@@ -32,6 +33,8 @@ RIGHT_BUTTON = [1240, (SCREEN_HEIGHT//2)+15, 30]
 # 파일 위치
 loc_screen_flag = "data/screen.flag"
 loc_menu_distance = "data/menu.distance"
+loc_arrow_l = "data/arrow_l.distance"
+loc_arrow_r = "data/arrow_r.distance"
 loc_money = 'data/money'
 loc_hogamdo = "data/hogamdo"
 

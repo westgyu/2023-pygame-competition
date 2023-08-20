@@ -60,73 +60,54 @@ def switch_screen(screen, flag, money, hogamdo):
         gmenu.menu(screen) # 메뉴 화면 함수 호출
 
 # 버튼 띄우기 함수(메뉴)
-def default_ui_menu(screen, mouse_pos, event):
+def default_ui(screen, mouse_pos, event, pos):
+    # pos : 0 - 좌측 하단(game_start), 1 - 우측 상단과 오른쪽, 왼쪽(나머지)
     global screen_flag
-    pygame.draw.circle(screen, BLACK, (MENU_BUTTON[0], MENU_BUTTON[1]), MENU_BUTTON[2]) # 원 그리기
+
+    if pos == 0:
+        button = MENU_BUTTON
+    elif pos == 1:
+        button = EXIT_BUTTON
+    
+    pygame.draw.circle(screen, BLACK, (button[0], button[1]), button[2]) # 원 그리기
+    
+    if pos == 1:
+        pygame.draw.circle(screen, BLACK, (LEFT_BUTTON[0], LEFT_BUTTON[1]), LEFT_BUTTON[2]) # 왼쪽 화살표 그리기
+        pygame.draw.circle(screen, BLACK, (RIGHT_BUTTON[0], RIGHT_BUTTON[1]), RIGHT_BUTTON[2]) # 왼쪽 화살표 그리기
+    else:
+        pygame.display.update()
+    
     while not event.is_set():
         # 마우스가 원 위에 있는지 여부 확인
-        distance = ((MENU_BUTTON[0] - mouse_pos[0]) ** 2 + (MENU_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
-        varfile("w", "data/menu.distance", distance) # 값 저장
+        distance = ((button[0] - mouse_pos[0]) ** 2 + (button[1] - mouse_pos[1]) ** 2) ** 0.5
+        arrow_l_distance = ((LEFT_BUTTON[0] - mouse_pos[0]) ** 2 + (LEFT_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
+        arrow_r_distance = ((RIGHT_BUTTON[0] - mouse_pos[0]) ** 2 + (RIGHT_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
+
+
+        varfile("w", loc_menu_distance, distance) # 값 저장
+        if pos == 1:
+            varfile("w", loc_arrow_l, arrow_l_distance) # 값 저장
+            varfile("w", loc_arrow_r, arrow_r_distance) # 값 저장
+
 
         # 마우스가 원 위에 있는 경우
         if distance <= MENU_BUTTON[2]:
-            circle = pygame.draw.circle(screen, (255, 0, 0), (MENU_BUTTON[0], MENU_BUTTON[1]), MENU_BUTTON[2]) # 빨간색으로 변경
+            circle = pygame.draw.circle(screen, RED, (button[0], button[1]), button[2]) # 빨간색으로 변경
         else: # 아니라면
-            circle = pygame.draw.circle(screen, BLACK, (MENU_BUTTON[0], MENU_BUTTON[1]), MENU_BUTTON[2]) # 원래대로
+            circle = pygame.draw.circle(screen, BLACK, (button[0], button[1]), button[2]) # 원래대로
+        if pos == 1: # 화살표 마우스 위치 확인
+            if arrow_l_distance <= LEFT_BUTTON[2]: # 왼쪽 화살표
+                arrow_l = pygame.draw.circle(screen, RED, (LEFT_BUTTON[0], LEFT_BUTTON[1]), LEFT_BUTTON[2]) # 빨간색으로 변경
+            else:
+                arrow_l = pygame.draw.circle(screen, BLACK, (LEFT_BUTTON[0], LEFT_BUTTON[1]), LEFT_BUTTON[2]) # 원래대로
+
+            if arrow_r_distance <= RIGHT_BUTTON[2]: # 오른쪽 화살표
+                arrow_r = pygame.draw.circle(screen, RED, (RIGHT_BUTTON[0], RIGHT_BUTTON[1]), RIGHT_BUTTON[2]) # 빨간색으로 변경
+            else:
+                arrow_r = pygame.draw.circle(screen, BLACK, (RIGHT_BUTTON[0], RIGHT_BUTTON[1]), RIGHT_BUTTON[2]) # 원래대로
 
         # 화면 업데이트
         pygame.display.update(circle)
-
-# 버튼 띄우기 함수(나가기)
-def default_ui_exit(screen, mouse_pos, event):
-    global screen_flag
-    pygame.draw.circle(screen, BLACK, (EXIT_BUTTON[0], EXIT_BUTTON[1]), EXIT_BUTTON[2]) # 원 그리기
-    while not event.is_set():
-        # 마우스가 원 위에 있는지 여부 확인
-        distance = ((EXIT_BUTTON[0] - mouse_pos[0]) ** 2 + (EXIT_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
-        varfile("w", "data/menu.distance", distance) # 값 저장
-
-        # 마우스가 원 위에 있는 경우
-        if distance <= EXIT_BUTTON[2]:
-            circle = pygame.draw.circle(screen, (255, 0, 0), (EXIT_BUTTON[0], EXIT_BUTTON[1]), EXIT_BUTTON[2]) # 빨간색으로 변경
-        else: # 아니라면
-            circle = pygame.draw.circle(screen, BLACK, (EXIT_BUTTON[0], EXIT_BUTTON[1]), EXIT_BUTTON[2]) # 원래대로
-
-        # 화면 업데이트
-        pygame.display.update(circle)
-
-# 버튼 띄우기 함수(왼쪽)
-def default_ui_left(screen, mouse_pos, event):
-    global screen_flag
-    pygame.draw.circle(screen, BLACK, (LEFT_BUTTON[0], LEFT_BUTTON[1]), LEFT_BUTTON[2]) # 원 그리기
-    while not event.is_set():
-        # 마우스가 원 위에 있는지 여부 확인
-        distance = ((LEFT_BUTTON[0] - mouse_pos[0]) ** 2 + (LEFT_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
-        varfile("w", "data/menu.distance", distance) # 값 저장
-
-        # 마우스가 원 위에 있는 경우
-        if distance <= EXIT_BUTTON[2]:
-            circle = pygame.draw.circle(screen, (255, 0, 0), (LEFT_BUTTON[0], LEFT_BUTTON[1]), LEFT_BUTTON[2]) # 빨간색으로 변경
-        else: # 아니라면
-            circle = pygame.draw.circle(screen, BLACK, (LEFT_BUTTON[0], LEFT_BUTTON[1]), LEFT_BUTTON[2]) # 원래대로
-
-        # 화면 업데이트
-        pygame.display.update(circle)
-
-# 버튼 띄우기 함수(오른쪽)
-def default_ui_right(screen, mouse_pos, event):
-    global screen_flag
-    pygame.draw.circle(screen, BLACK, (RIGHT_BUTTON[0], RIGHT_BUTTON[1]), RIGHT_BUTTON[2]) # 원 그리기
-    while not event.is_set():
-        # 마우스가 원 위에 있는지 여부 확인
-        distance = ((RIGHT_BUTTON[0] - mouse_pos[0]) ** 2 + (RIGHT_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
-        varfile("w", "data/menu.distance", distance) # 값 저장
-
-        # 마우스가 원 위에 있는 경우
-        if distance <= RIGHT_BUTTON[2]:
-            circle = pygame.draw.circle(screen, (255, 0, 0), (RIGHT_BUTTON[0], RIGHT_BUTTON[1]), RIGHT_BUTTON[2]) # 빨간색으로 변경
-        else: # 아니라면
-            circle = pygame.draw.circle(screen, BLACK, (RIGHT_BUTTON[0], RIGHT_BUTTON[1]), RIGHT_BUTTON[2]) # 원래대로
-
-        # 화면 업데이트
-        pygame.display.update(circle)
+        if pos == 1:
+            pygame.display.update(arrow_l)
+            pygame.display.update(arrow_r)
