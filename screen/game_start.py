@@ -20,10 +20,11 @@ def start(screen):
 
     screen_flag = int(utils.varfile("r", loc_screen_flag, 0)) # screen_flag 변수 업데이트
     menu_distance = utils.varfile("r", loc_menu_distance, 0) # menu_distance(마우스가 원 위에 있는지 탐지) 변수 업데이트
+
     if menu_distance != '': # menu_distance에 값이 있다면
         menu_distance = float(menu_distance) # float로 형변환
     
-    menu_check = threading.Thread(target=utils.default_ui_menu, args=(screen, mouse_pos, menu_check_stop_event)) # UI 쓰레드
+    menu_check = threading.Thread(target=utils.default_ui, args=(screen, mouse_pos, menu_check_stop_event, 0)) # UI 쓰레드
     if thr_flag == 0: # 한 번도 실행이 안 됐다면
         thr_flag = 1
         menu_check_stop_event.clear() # 이벤트 초기화
