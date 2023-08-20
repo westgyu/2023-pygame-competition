@@ -12,7 +12,7 @@ menu_check_stop_event = threading.Event() # 쓰레드 종료 이벤트
 res = ['5', '3', '2', '1', '0', '-1', '-2', '-3', '-5'] # 결과값 (배수)
 time = 100000 # 시간
 
-# 도박장 - screen_flag = 3
+# 도박장 - screen_flag = 5
 def casino(screen, money, hogamdo):
     global res, time, mouse_pos, thr_flag
     utils.show_image("img/game_desc/flower-g1457003f2_1920.jpg", screen) # 배경 출력

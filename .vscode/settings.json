@@ -3,6 +3,7 @@
         "blit",
         "gmarket",
         "gmenu",
+        "gsave",
         "HOGAMDO",
         "KEYDOWN",
         "MOUSEBUTTONDOWN",

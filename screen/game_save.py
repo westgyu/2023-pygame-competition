@@ -4,7 +4,7 @@ import sys
 from env import * # 설정값 저장 파일: env.py
 import func as utils # 함수 파일: func.py
 
-# 농장 - screen_flag = 3
+# 저장 - screen_flag = 7
 def save(screen):
     utils.show_image("img/game_desc/flower-g1457003f2_1920.jpg", screen)
 

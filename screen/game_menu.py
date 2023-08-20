@@ -9,7 +9,7 @@ thr_flag = 0 # 쓰레드 실행 여부
 menu_check_stop_event = threading.Event() # 쓰레드 종료 이벤트
 mouse_pos = [0, 0] # 마우스 위치 [x, y]
 
-# 메인 게임화면(판매/배달) - screen_flag = 2
+# 메뉴화면(판매/배달) - screen_flag = 6
 def menu(screen):
     global mouse_pos, thr_flag
     utils.show_image("img/game_desc/flower-g1457003f2_1920.jpg", screen) # 배경 출력

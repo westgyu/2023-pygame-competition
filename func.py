@@ -8,6 +8,7 @@ import screen.game_farm as gf # 게임 실행 파일: screen\game_farm.py
 import screen.game_market as gmarket # 게임 실행 파일: screen\game_market.py
 import screen.game_casino as gc # 게임 실행 파일: screen\game_casino.py
 import screen.game_menu as gmenu # 게임 실행 파일: screen\game_menu.py
+import screen.game_save as gsave # 게임 실행 파일: screen\game_save.py
 
 def init():
     pygame.init() # Pygame 초기화
@@ -61,6 +62,8 @@ def switch_screen(screen, flag, money, hogamdo):
         gc.casino(screen, money, hogamdo) # 도박장 화면 함수 호출
     elif flag == 6: # 메뉴 화면
         gmenu.menu(screen) # 메뉴 화면 함수 호출
+    elif flag == 7: # 저장 화면
+        gsave.save(screen) # 저장 화면 함수 호출
 
 # 버튼 띄우기 함수(메뉴)
 def default_ui(screen, mouse_pos, event, pos):
@@ -89,12 +92,10 @@ def default_ui(screen, mouse_pos, event, pos):
         arrow_l_distance = ((LEFT_BUTTON[0] - mouse_pos[0]) ** 2 + (LEFT_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
         arrow_r_distance = ((RIGHT_BUTTON[0] - mouse_pos[0]) ** 2 + (RIGHT_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
 
-
         varfile("w", loc_menu_distance, distance) # 값 저장
         if pos == 1:
             varfile("w", loc_arrow_l, arrow_l_distance) # 값 저장
             varfile("w", loc_arrow_r, arrow_r_distance) # 값 저장
-
 
         # 마우스가 원 위에 있는 경우
         if distance <= MENU_BUTTON[2]:
