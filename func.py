@@ -13,9 +13,12 @@ def init():
     pygame.init() # Pygame 초기화
     pygame.display.set_caption("2023 Pygame Competition") # 제목 설정
 
-def show_text(text, font, color, screen, x, y):
+def show_text(text, font, color, screen, x, y, align="center"):
     text_surface = font.render(text, True, color)
-    text_rect = text_surface.get_rect(center=(x, y))
+    if align == "center":
+        text_rect = text_surface.get_rect(center=(x, y))
+    elif align == "left":
+        text_rect = text_surface.get_rect(topleft=(x, y))
     screen.blit(text_surface, text_rect)
     return text_rect
 
@@ -78,6 +81,9 @@ def default_ui(screen, mouse_pos, event, pos):
         pygame.display.update()
     
     while not event.is_set():
+        money = varfile("r", loc_money, 0) # arrow_l_distance 변수 업데이트
+        hogamdo = varfile("r", loc_hogamdo, 0) # arrow_r_distance 변수 업데이트
+
         # 마우스가 원 위에 있는지 여부 확인
         distance = ((button[0] - mouse_pos[0]) ** 2 + (button[1] - mouse_pos[1]) ** 2) ** 0.5
         arrow_l_distance = ((LEFT_BUTTON[0] - mouse_pos[0]) ** 2 + (LEFT_BUTTON[1] - mouse_pos[1]) ** 2) ** 0.5
@@ -111,3 +117,7 @@ def default_ui(screen, mouse_pos, event, pos):
         if pos == 1:
             pygame.display.update(arrow_l)
             pygame.display.update(arrow_r)
+        
+        # 재화 출력
+        show_text(f"돈: {money}", BODY_FONT, BLACK, screen, 15, SCREEN_HEIGHT // 7, "left")
+        show_text(f"호감도: {hogamdo}", BODY_FONT, BLACK, screen, 15, SCREEN_HEIGHT // 7 + 40, "left")
