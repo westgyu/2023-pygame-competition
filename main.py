@@ -41,8 +41,4 @@ while True:
                 if event.button == 1: # 마우스 왼쪽 버튼 눌렀을 때
                     if mouse_x >= MAIN_BUTTON_START[0] and mouse_x <= MAIN_BUTTON_END[0] and mouse_y >= MAIN_BUTTON_START[1] and mouse_y <= MAIN_BUTTON_END[1]: # 마우스가 게임 시작 위치에 있을 때
                         utils.varfile("w", loc_screen_flag, 2) # 게임 시작 화면으로 이동
-            # 테스트용
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_F1:
-                    utils.varfile("w", loc_screen_flag, 5)
     utils.switch_screen(screen, screen_flag, money, hogamdo) # screen_flag 변수에 따라 화면 전환
